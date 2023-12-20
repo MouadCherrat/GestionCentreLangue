@@ -6,6 +6,7 @@ namespace Application_GS_ecole.Controllers
 {
     public class AdminController : Controller
     {
+        
         SqlConnection con = new SqlConnection();
         SqlCommand cmd = new SqlCommand();
         SqlDataReader rd;
@@ -24,6 +25,8 @@ namespace Application_GS_ecole.Controllers
         [HttpPost]
         public IActionResult Verify(Admin admin)
         {
+            try
+            {
                 ConnectionString();
                 con.Open();
                 cmd.Connection = con;
@@ -32,20 +35,27 @@ namespace Application_GS_ecole.Controllers
                 cmd.Parameters.AddWithValue("@MotDePasse", admin.MotDePasse);
                 rd = cmd.ExecuteReader();
 
-            if (rd.Read())
-            {
-               // HttpContext.Session.SetString("AdminLoggedIn", "true");
-                con.Close();
-                return Redirect("~/Home/Index");
-            }
-            else
+                if (rd.Read())
+                {
+                    HttpContext.Session.SetString("AdminLoggedIn", "true");
+                    con.Close();
+                    return View("acces");
+                }
+                else
                 {
                     con.Close();
                     return View("error");
                 }
             }
-         
-        
+            catch (Exception ex)
+            {
+                
+                return View("error");
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
-
 }

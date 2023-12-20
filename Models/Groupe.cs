@@ -14,5 +14,7 @@ namespace Application_GS_ecole.Models
         public Guid Id_Groupe { get; set; }
         public int NumeroDeGroupe { get; set; }
         public Guid Id_Cours { get; set; }
+        [ForeignKey("Id_Cours")]
+        public required Cours Cours { get; set; }
     }
 }

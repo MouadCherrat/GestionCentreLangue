@@ -38,8 +38,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Language Center</a>
+  
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Language Center</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,20 +48,29 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" asp-area="" asp-controller="Cours" asp-action="AddCourses">New Course</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" asp-area="" asp-controller="Cours" asp-action="AllCourses">All Courses</a>
                     </li>
+                    <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Groupe" asp-action="AddGroupes">New Group</a>
+                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Groupe" asp-action="AllGroupes">All Group</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Prof" asp-action="AddProf">New Prof</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Prof" asp-action="AllProfs">All Profs</a>
+                </li>
                
 
             </ul>
         </div>
     </nav>
-
+    
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

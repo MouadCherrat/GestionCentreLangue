@@ -15,6 +15,7 @@ namespace Application_GS_ecole.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 

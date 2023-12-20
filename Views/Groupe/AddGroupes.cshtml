@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+    <title>Add Group</title>
+
+    <div class="container mt-5">
+        <h2>Add Group</h2>
+        <form method="post" action="/Groupe/AddGroupes">
+            @* You can use Razor syntax to generate anti-forgery tokens if needed *@
+            @* @Html.AntiForgeryToken() *@
+
+            <div class="mb-3">
+                <label for="NumeroDeGroupe" class="form-label">Group Number</label>
+                <input type="text" class="form-control" id="NumeroDeGroupe" name="NumeroDeGroupe" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="CourseName" class="form-label">Course Name</label>
+                <input type="text" class="form-control" id="CourseName" name="CourseName" required>
+                
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add Group</button>
+        </form>
+    </div>

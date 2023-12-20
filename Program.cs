@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,8 +12,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Mvcecolecontext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("MvcecolecontextConnection")));
 builder.Services.AddScoped<CoursServices>();
+builder.Services.AddScoped<GroupeServices>();
+builder.Services.AddScoped<ProfServices>();
 builder.Services.AddSession();
-builder.Services.AddHttpContextAccessor();
+
 
 
 
