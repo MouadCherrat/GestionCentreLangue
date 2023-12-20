@@ -1,6 +1,8 @@
 using Application_GS_ecole.Data;
 using Application_GS_ecole.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Mvcecolecontext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("MvcecolecontextConnection")));
 builder.Services.AddScoped<CoursServices>();
-builder.Services.AddScoped<AdminServices>();
+builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
+
 
 
 
@@ -30,10 +34,11 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Admin}/{action=Login}/{id?}");
 
 
 app.Run();

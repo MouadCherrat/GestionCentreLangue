@@ -1,46 +1,51 @@
-﻿using System;
-using Application_GS_ecole.Models;
-using Application_GS_ecole.Services;
-using Microsoft.AspNetCore.Cors.Infrastructure;
+﻿using Application_GS_ecole.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 
 namespace Application_GS_ecole.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly AdminServices _adminServices;
+        SqlConnection con = new SqlConnection();
+        SqlCommand cmd = new SqlCommand();
+        SqlDataReader rd;
 
-        public AdminController(AdminServices adminServices)
-        {
-            _adminServices = adminServices;
-        }
         [HttpGet]
-        public IActionResult AllAdmins()
-        {
-            var admins = _adminServices.GetAllAdmins();
-            return View(admins);
-        }
-        [HttpGet]
-        public IActionResult AddAdmins()
+        public IActionResult Login()
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult AddAdmins(Admin admin)
+
+        void ConnectionString()
         {
-            if (ModelState.IsValid)
-            {
-                _adminServices.AddAdmin(admin);
-                return RedirectToAction("AllAdmins");
-            }
-            return View(admin);
-        }
-        [HttpPost]
-        public IActionResult DeleteAdmins(Guid adminId)
-        {
-            _adminServices.DeleteAdmin(adminId);
-            return RedirectToAction("AllAdmins");
+            con.ConnectionString = "Data Source=KHALIL\\SQLEXPRESS;Initial Catalog=MvcecoleDb;Integrated Security=True;TrustServerCertificate=True;Encrypt=False;";
         }
 
+        [HttpPost]
+        public IActionResult Verify(Admin admin)
+        {
+                ConnectionString();
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandText = "SELECT * FROM Admins WHERE Login=@Login AND MotDePasse=@MotDePasse";
+                cmd.Parameters.AddWithValue("@Login", admin.Login);
+                cmd.Parameters.AddWithValue("@MotDePasse", admin.MotDePasse);
+                rd = cmd.ExecuteReader();
+
+            if (rd.Read())
+            {
+               // HttpContext.Session.SetString("AdminLoggedIn", "true");
+                con.Close();
+                return Redirect("~/Home/Index");
+            }
+            else
+                {
+                    con.Close();
+                    return View("error");
+                }
+            }
+         
+        
     }
+
 }
