@@ -1,22 +1,41 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+    padding-top: 56px; /* Adjust based on your fixed navbar height */
+}
+
+header {
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.navbar {
+    background-color: #007bff;
+}
+
+.dashboard {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.card-header-primary {
+    background-color: #2196f3;
+    color: #fff;
+}
+
+.card-header-success {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.card-header-info {
+    background-color: #03a9f4;
+    color: #fff;
 }

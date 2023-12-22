@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApplicationGSecole.Migrations
 {
     [DbContext(typeof(Mvcecolecontext))]
-    [Migration("20231213111239_MvcecoleDb")]
-    partial class MvcecoleDb
+    [Migration("20231222192430_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,22 +68,13 @@ namespace ApplicationGSecole.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("GroupeId_Groupe")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("Id_Groupe")
+                    b.Property<Guid>("Id_Cours")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nom")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<double>("Note1")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Note2")
-                        .HasColumnType("float");
 
                     b.Property<string>("Prenom")
                         .IsRequired()
@@ -92,26 +83,9 @@ namespace ApplicationGSecole.Migrations
 
                     b.HasKey("Id_Etudiant");
 
-                    b.HasIndex("GroupeId_Groupe");
+                    b.HasIndex("Id_Cours");
 
                     b.ToTable("Etudiants");
-                });
-
-            modelBuilder.Entity("Application_GS_ecole.Models.Groupe", b =>
-                {
-                    b.Property<Guid>("Id_Groupe")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("Id_Cours")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("NumeroDeGroupe")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id_Groupe");
-
-                    b.ToTable("Groupes");
                 });
 
             modelBuilder.Entity("Application_GS_ecole.Models.Prof", b =>
@@ -135,19 +109,31 @@ namespace ApplicationGSecole.Migrations
 
                     b.HasKey("Id_Prof");
 
+                    b.HasIndex("Id_Cours");
+
                     b.ToTable("Profs");
                 });
 
             modelBuilder.Entity("Application_GS_ecole.Models.Etudiant", b =>
                 {
-                    b.HasOne("Application_GS_ecole.Models.Groupe", null)
-                        .WithMany("Etudiants")
-                        .HasForeignKey("GroupeId_Groupe");
+                    b.HasOne("Application_GS_ecole.Models.Cours", "cours")
+                        .WithMany()
+                        .HasForeignKey("Id_Cours")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("cours");
                 });
 
-            modelBuilder.Entity("Application_GS_ecole.Models.Groupe", b =>
+            modelBuilder.Entity("Application_GS_ecole.Models.Prof", b =>
                 {
-                    b.Navigation("Etudiants");
+                    b.HasOne("Application_GS_ecole.Models.Cours", "Cours")
+                        .WithMany()
+                        .HasForeignKey("Id_Cours")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cours");
                 });
 #pragma warning restore 612, 618
         }

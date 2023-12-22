@@ -1,8 +1,9 @@
 ﻿function deleteCourse(courseId) {
     if (confirm("Are you sure you want to delete this course?")) {
+        window.location.href = '/Cours/DeleteCourses?courseId=' + courseId;
         $.ajax({
             type: 'POST',
-            url: '/Cours/DeleteCourse?courseId=' + courseId,
+            url: '/Cours/DeleteCourses?courseId=' + courseId,
             contentType: 'application/json; charset=utf-8',
            
             success: function () {
@@ -13,23 +14,3 @@
             }
         });
     }
-}
-function deleteAdmin(adminId) {
-    if (confirm("Are you sure you want to delete this admin?")) {
-        $.ajax({
-            type: 'POST',
-            url: '/Admin/DeleteAdmins?adminId=' + adminId,
-            contentType: 'application/json; charset=utf-8',
-
-            success: function () {
-                location.reload();
-            },
-            error: function () {
-                alert('Error deleting the admin.');
-            }
-        });
-    }
-}
-function editCourse(courseId) {
-    window.location.href = '/Cours/EditCourse?courseId=' + courseId;
-}

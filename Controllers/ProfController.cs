@@ -19,9 +19,11 @@ namespace Application_GS_ecole.Controllers
             var profs = profservices.GetAllProfs();
             return View(profs);
         }
+       
         [HttpGet]
         public IActionResult AddProf()
         {
+            ViewBag.CourseList = profservices.GetCourseNames();
             return View();
         }
 

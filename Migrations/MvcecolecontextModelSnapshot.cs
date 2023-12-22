@@ -65,19 +65,13 @@ namespace ApplicationGSecole.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("Id_Groupe")
+                    b.Property<Guid>("Id_Cours")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nom")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<double>("Note1")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Note2")
-                        .HasColumnType("float");
 
                     b.Property<string>("Prenom")
                         .IsRequired()
@@ -86,26 +80,9 @@ namespace ApplicationGSecole.Migrations
 
                     b.HasKey("Id_Etudiant");
 
-                    b.ToTable("Etudiants");
-                });
-
-            modelBuilder.Entity("Application_GS_ecole.Models.Groupe", b =>
-                {
-                    b.Property<Guid>("Id_Groupe")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("Id_Cours")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("NumeroDeGroupe")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id_Groupe");
-
                     b.HasIndex("Id_Cours");
 
-                    b.ToTable("Groupes");
+                    b.ToTable("Etudiants");
                 });
 
             modelBuilder.Entity("Application_GS_ecole.Models.Prof", b =>
@@ -129,10 +106,23 @@ namespace ApplicationGSecole.Migrations
 
                     b.HasKey("Id_Prof");
 
+                    b.HasIndex("Id_Cours");
+
                     b.ToTable("Profs");
                 });
 
-            modelBuilder.Entity("Application_GS_ecole.Models.Groupe", b =>
+            modelBuilder.Entity("Application_GS_ecole.Models.Etudiant", b =>
+                {
+                    b.HasOne("Application_GS_ecole.Models.Cours", "cours")
+                        .WithMany()
+                        .HasForeignKey("Id_Cours")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("cours");
+                });
+
+            modelBuilder.Entity("Application_GS_ecole.Models.Prof", b =>
                 {
                     b.HasOne("Application_GS_ecole.Models.Cours", "Cours")
                         .WithMany()

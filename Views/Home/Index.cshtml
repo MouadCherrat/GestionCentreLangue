@@ -1,33 +1,42 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<div id="idd">
+
 <header>
-    <h1>Admin Dashboard</h1>
-    <p>Manage the Language Center with ease.</p>
+    <h1>Manage the Language Center with ease.</h1>
 </header>
 
-<div class="container dashboard">
-    <div class="card">
-        <div class="card-header">
-            Courses Management
-        </div>
-        <div class="card-body">
-            <p class="card-text">Add, edit, or delete language courses.</p>
-            <a href="/Cours/AllCourses" class="btn btn-primary">Manage Courses</a>
-        </div>
-    </div>
+<div class="container">
+    <div class="dashboard">
         <div class="card">
-            <div class="card-header">
-                Prof Management
+            <div class="card-header card-header-primary">
+                Courses Management
             </div>
             <div class="card-body">
-                <p class="card-text">Add, edit, or delete language Prof.</p>
+                <p class="card-text">Add or delete language courses.</p>
                 <a href="/Cours/AllCourses" class="btn btn-primary">Manage Courses</a>
             </div>
         </div>
 
-    <!-- Add more cards for different admin functionalities -->
+        <div class="card">
+            <div class="card-header card-header-success">
+                Prof Management
+            </div>
+            <div class="card-body">
+                <p class="card-text">Add or delete Prof.</p>
+                <a href="/Prof/AllProfs" class="btn btn-success">Manage Profs</a>
+            </div>
+        </div>
 
-</div>
+        <div class="card">
+            <div class="card-header card-header-info">
+                Student Management
+            </div>
+            <div class="card-body">
+                <p class="card-text">Add or delete Student.</p>
+                <a href="/Student/AllStudents" class="btn btn-info">Manage Students</a>
+            </div>
+        </div>
+        <!-- Add more cards for different admin functionalities -->
+    </div>
 </div>

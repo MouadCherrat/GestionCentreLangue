@@ -1,18 +1,20 @@
-﻿
-<title>Add Prof</title>
-
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
 <div class="container mt-5">
-    <h2>Add Prof</h2>
-    <form method="post" action="AddProf">
+    <h2>Add Student</h2>
 
-
-        <div class="mb-3">
-            <label for="NumeroDeGroupe" class="form-label">First name</label>
-            <input type="text" class="form-control" id="Prenom" name="Prenom" required>
-        </div>
-        <div class="mb-3">
-            <label for="NumeroDeGroupe" class="form-label">Last name</label>
+    <form asp-action="AddStudent" method="post">
+        <div class="form-group">
+            <label for="Nom">Nom:</label>
             <input type="text" class="form-control" id="Nom" name="Nom" required>
+        </div>
+
+        <div class="form-group">
+            <label for="Prenom">Prenom:</label>
+            <input type="text" class="form-control" id="Prenom" name="Prenom" required>
         </div>
 
         <div class="form-group">
@@ -26,6 +28,6 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary">Add Prof</button>
+        <button type="submit" class="btn btn-primary">Add student</button>
     </form>
 </div>

@@ -12,8 +12,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Mvcecolecontext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("MvcecolecontextConnection")));
 builder.Services.AddScoped<CoursServices>();
-builder.Services.AddScoped<GroupeServices>();
 builder.Services.AddScoped<ProfServices>();
+builder.Services.AddScoped<StudentServices>();
 builder.Services.AddSession();
 
 
@@ -37,6 +37,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
 app.UseSession();
 
 app.MapControllerRoute(

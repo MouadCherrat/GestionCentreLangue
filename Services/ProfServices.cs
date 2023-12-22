@@ -27,6 +27,10 @@ namespace Application_GS_ecole.Services
             var course = _context.Cours.FirstOrDefault(c => c.Designation == courseName);
             return course.Id_cours;
         }
+        public List<string> GetCourseNames()
+        {
+            return _context.Cours.Select(c => c.Designation).ToList();
+        }
 
     }
 }

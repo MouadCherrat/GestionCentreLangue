@@ -21,9 +21,10 @@ namespace Application_GS_ecole.Models
         [StringLength(50)]
         public string Prenom { get; set; }
 
-        public Guid Id_Groupe { get; set; }
-        public double Note1 { get; set; }
-        public double Note2 { get; set; }
-      //  public string Admission => Note1 / Note2 >= 10 ? "Admis" : "Non Admis";
+       
+        public Guid Id_Cours { get; set; }
+        [ForeignKey("Id_Cours")]
+        public required Cours cours { get; set; }
+     
     }
 }

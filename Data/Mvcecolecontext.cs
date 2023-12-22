@@ -15,8 +15,10 @@ namespace Application_GS_ecole.Data
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Prof> Profs { get; set; }
         public DbSet<Cours> Cours { get; set; }
-        public DbSet<Groupe> Groupes { get; set; }
         public DbSet<Etudiant> Etudiants { get; set; }
-    }
+
+       
+        }
+
 }
 

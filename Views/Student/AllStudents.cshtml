@@ -3,27 +3,27 @@
 *@
 @{
 }
-@model List<Prof>
+@model List<Etudiant>
 
 <div class="container mt-5">
-    <h2>List Profs</h2>
+    <h2>All Students</h2>
 
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">First name</th>
                 <th scope="col">Last name</th>
-                <th scope="col">Cours designation</th>
+                <th scope="col">First name</th>
+               <th  scope="col">Designation</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var prof in Model)
+            @foreach (var student in Model)
             {
                 <tr>
-                    <td>@prof.Prenom</td>
-                    <td>@prof.Nom</td>
-                    <td>@prof.Cours.Designation</td>
+                    <td>@student.Nom</td>
+                    <td>@student.Prenom</td>
+                    <td>@student.cours?.Designation</td>
                     <td>
                         <a href="#" class="btn btn-danger">Delete</a>
                     </td>
@@ -32,3 +32,4 @@
         </tbody>
     </table>
 </div>
+

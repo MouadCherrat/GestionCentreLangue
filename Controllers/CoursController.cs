@@ -16,8 +16,6 @@ namespace Application_GS_ecole.Controllers
         }
 
         [HttpGet]
-        [Route("Cours/AllCourses")]
-
         public IActionResult AllCourses()
         {
             var courses = coursservices.GetAllCourses();
@@ -35,27 +33,11 @@ namespace Application_GS_ecole.Controllers
             return RedirectToAction("AllCourses"); // Redirect to a different action
         }
         [HttpPost]
-        public IActionResult DeleteCourse(Guid courseId)
+        [Route("Cours/DeleteCourses")]
+        public IActionResult DeleteCourses(Guid courseId)
         {
             coursservices.DeleteCours(courseId);
             return RedirectToAction("AllCourses");
-        }
-
-        [HttpGet]
-        public IActionResult EditCourse(Guid courseId)
-        {
-            var course = coursservices.GetCoursById(courseId);
-            return View(course);
-        }
-
-        [HttpPost]
-        public IActionResult EditCourse(Cours cours)
-        {
-          
-                coursservices.EditCourse(cours);
-                return RedirectToAction("AllCourses");
-        
-
         }
 
     }

@@ -33,17 +33,7 @@ namespace Application_GS_ecole.Services
             }
         }
 
-        public Cours GetCoursById(Guid courseId)
-        {
-            return _context.Cours.Find(courseId);
-        }
-
-        public void EditCourse(Cours cours)
-        {
-            _context.Cours.Update(cours);
-            _context.SaveChanges();
-                
-        }
+  
        
     }
 }

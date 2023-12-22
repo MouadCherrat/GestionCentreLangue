@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ApplicationGSecole.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -37,16 +37,23 @@ namespace ApplicationGSecole.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Groupes",
+                name: "Etudiants",
                 columns: table => new
                 {
-                    IdGroupe = table.Column<Guid>(name: "Id_Groupe", type: "uniqueidentifier", nullable: false),
-                    NumeroDeGroupe = table.Column<int>(type: "int", nullable: false),
-                    CoursId = table.Column<int>(type: "int", nullable: false)
+                    IdEtudiant = table.Column<Guid>(name: "Id_Etudiant", type: "uniqueidentifier", nullable: false),
+                    Nom = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Prenom = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    IdCours = table.Column<Guid>(name: "Id_Cours", type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Groupes", x => x.IdGroupe);
+                    table.PrimaryKey("PK_Etudiants", x => x.IdEtudiant);
+                    table.ForeignKey(
+                        name: "FK_Etudiants_Cours_Id_Cours",
+                        column: x => x.IdCours,
+                        principalTable: "Cours",
+                        principalColumn: "Id_cours",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -56,39 +63,28 @@ namespace ApplicationGSecole.Migrations
                     IdProf = table.Column<Guid>(name: "Id_Prof", type: "uniqueidentifier", nullable: false),
                     Nom = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Prenom = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CoursId = table.Column<int>(type: "int", nullable: false)
+                    IdCours = table.Column<Guid>(name: "Id_Cours", type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Profs", x => x.IdProf);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Etudiants",
-                columns: table => new
-                {
-                    IdEtudiant = table.Column<Guid>(name: "Id_Etudiant", type: "uniqueidentifier", nullable: false),
-                    Nom = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Prenom = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    GroupeId = table.Column<int>(type: "int", nullable: false),
-                    Note1 = table.Column<double>(type: "float", nullable: false),
-                    Note2 = table.Column<double>(type: "float", nullable: false),
-                    GroupeIdGroupe = table.Column<Guid>(name: "GroupeId_Groupe", type: "uniqueidentifier", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Etudiants", x => x.IdEtudiant);
                     table.ForeignKey(
-                        name: "FK_Etudiants_Groupes_GroupeId_Groupe",
-                        column: x => x.GroupeIdGroupe,
-                        principalTable: "Groupes",
-                        principalColumn: "Id_Groupe");
+                        name: "FK_Profs_Cours_Id_Cours",
+                        column: x => x.IdCours,
+                        principalTable: "Cours",
+                        principalColumn: "Id_cours",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Etudiants_GroupeId_Groupe",
+                name: "IX_Etudiants_Id_Cours",
                 table: "Etudiants",
-                column: "GroupeId_Groupe");
+                column: "Id_Cours");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Profs_Id_Cours",
+                table: "Profs",
+                column: "Id_Cours");
         }
 
         /// <inheritdoc />
@@ -98,16 +94,13 @@ namespace ApplicationGSecole.Migrations
                 name: "Admins");
 
             migrationBuilder.DropTable(
-                name: "Cours");
-
-            migrationBuilder.DropTable(
                 name: "Etudiants");
 
             migrationBuilder.DropTable(
                 name: "Profs");
 
             migrationBuilder.DropTable(
-                name: "Groupes");
+                name: "Cours");
         }
     }
 }

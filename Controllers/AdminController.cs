@@ -39,7 +39,7 @@ namespace Application_GS_ecole.Controllers
                 {
                     HttpContext.Session.SetString("AdminLoggedIn", "true");
                     con.Close();
-                    return View("acces");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -57,5 +57,7 @@ namespace Application_GS_ecole.Controllers
                 con.Close();
             }
         }
+   
+
     }
 }
