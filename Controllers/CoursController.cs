@@ -32,11 +32,10 @@ namespace Application_GS_ecole.Controllers
             coursservices.AddCours(cours);
             return RedirectToAction("AllCourses"); // Redirect to a different action
         }
-        [HttpPost]
-        [Route("Cours/DeleteCourses")]
-        public IActionResult DeleteCourses(Guid courseId)
+   
+        public IActionResult Delete(Guid id)
         {
-            coursservices.DeleteCours(courseId);
+            coursservices.DeleteCours(id);
             return RedirectToAction("AllCourses");
         }
 

@@ -24,13 +24,9 @@ namespace Application_GS_ecole.Services
         }
         public void DeleteCours(Guid courseId)
         {
-            var courseToDelete = _context.Cours.Find(courseId);
-
-            if (courseToDelete != null)
-            {
-                _context.Cours.Remove(courseToDelete);
-                _context.SaveChanges();
-            }
+            var course = _context.Cours.Find(courseId);
+             _context.Cours.Remove(course);
+             _context.SaveChanges();
         }
 
   
