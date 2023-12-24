@@ -50,3 +50,22 @@
     </section>
 
 </body>
+<script>
+    // Ajoutez ce script pour afficher l'alerte en cas d'erreur
+
+    var errorMessage = "@TempData["ErrorMessage"]";
+    if (errorMessage) {
+        alert(errorMessage);
+    }
+    var loginStatus = "@TempData["Login"]";
+    loginStatus = "false";
+    var nav = document.getElementById("navv");
+
+    if (loginStatus === "false") {
+        nav.style.display = "none";
+    } else {
+        nav.style.display = "block";
+    }
+   
+
+</script>

@@ -21,16 +21,16 @@ body {
 }
 
 .card-header-primary {
-    background-color: #2196f3;
+    background-color: black;
     color: #fff;
 }
 
 .card-header-success {
-    background-color: #4caf50;
+    background-color: dimgray;
     color: #fff;
 }
 
 .card-header-info {
-    background-color: #03a9f4;
+    background-color: darkgray;
     color: #fff;
 }

@@ -1,5 +1,6 @@
 ﻿using Application_GS_ecole.Data;
 using Application_GS_ecole.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application_GS_ecole.Services
 {
@@ -28,8 +29,8 @@ namespace Application_GS_ecole.Services
              _context.Cours.Remove(course);
              _context.SaveChanges();
         }
-
-  
        
+
+
     }
 }

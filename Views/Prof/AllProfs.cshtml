@@ -7,7 +7,15 @@
 
 <div class="container mt-5">
     <h2>List Profs</h2>
-
+    <form method="get" action="@Url.Action("AllProfs")" class="mb-3">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" id="searchName" name="searchName" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+    <a asp-action="AllProfsPDF" asp-controller="Prof" class="btn btn-primary">Download PDF</a>
     <table class="table">
         <thead>
             <tr>

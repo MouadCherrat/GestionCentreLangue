@@ -1,19 +1,25 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@model List<Etudiant>
+﻿@model List<Etudiant>
 
 <div class="container mt-5">
     <h2>All Students</h2>
 
-    <table class="table">
+    <form method="get" action="@Url.Action("AllStudents")" class="mb-3">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" id="searchName" name="searchName" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+
+    <a asp-action="AllStudentsPDF" asp-controller="Student" class="btn btn-primary">Download PDF</a>
+
+    <table class="table mt-3">
         <thead>
             <tr>
                 <th scope="col">Last name</th>
                 <th scope="col">First name</th>
-               <th  scope="col">Designation</th>
+                <th scope="col">Designation</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -25,11 +31,12 @@
                     <td>@student.Prenom</td>
                     <td>@student.cours?.Designation</td>
                     <td>
-                        <a asp-action="Delete" asp-route-id="@student.Id_Etudiant" class="text-danger ml-1" onclick="return confirm('Are you sure to delete this Student?')"><i class="fa fa-trash-alt fa-lg">Delete</i></a>
+                        <a asp-action="Delete" asp-route-id="@student.Id_Etudiant" class="text-danger ml-1" onclick="return confirm('Are you sure to delete this Student?')">
+                            <i class="fa fa-trash-alt fa-lg">Delete</i>
+                        </a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-

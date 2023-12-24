@@ -3,13 +3,25 @@
 @{
 }
 
+<div class="container mt-5">
 <h2>List of Courses</h2>
+    <form method="get" action="@Url.Action("AllCourses")" class="mb-3">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" id="searchName" name="searchName" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+    <a asp-action="AllCoursesPDF" asp-controller="Cours" class="btn btn-primary">Download PDF</a>
 
 <table class="table">
     <thead>
         <tr>
             <th>Designation</th>
             <th>Action</th>
+            <th>Students</th>
+
         </tr>
     </thead>
     <tbody>
@@ -20,8 +32,13 @@
                 <td>
                     <a asp-action="Delete" asp-route-id="@course.Id_cours" class="text-danger ml-1" onclick="return confirm('Are you sure to delete this Cours?')"><i class="fa fa-trash-alt fa-lg">Delete</i></a>
                 </td>
+                    <td>
+                        <a asp-controller="Student" asp-action="List" asp-route-idCours="@course.Id_cours">List of Students</a>
+                    </td>
+
             </tr>
         }
     </tbody>
 </table>
+</div>
 

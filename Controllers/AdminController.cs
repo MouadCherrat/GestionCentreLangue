@@ -11,6 +11,7 @@ namespace Application_GS_ecole.Controllers
         SqlCommand cmd = new SqlCommand();
         SqlDataReader rd;
 
+
         [HttpGet]
         public IActionResult Login()
         {
@@ -37,27 +38,30 @@ namespace Application_GS_ecole.Controllers
 
                 if (rd.Read())
                 {
-                   
+                    TempData["Login"] = "true";
                     con.Close();
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    con.Close();
-                    return View("error");
+                    TempData["ErrorMessage"] = "Invalid Informations"; // Stocke le message dans TempData
+                    TempData["Login"] = "false";
+                    return RedirectToAction("Login");
+
                 }
             }
             catch (Exception ex)
             {
-                
-                return View("error");
+                TempData["ErrorMessage"] = "The inputs are required"; // Stocke le message dans TempData
+                TempData["Login"] = "false";
+                return RedirectToAction("Login");
             }
             finally
             {
                 con.Close();
             }
         }
-   
+
 
     }
 }

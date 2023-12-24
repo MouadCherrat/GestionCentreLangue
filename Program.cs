@@ -2,6 +2,8 @@ using Application_GS_ecole.Data;
 using Application_GS_ecole.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
+using DinkToPdf.Contracts;
+using DinkToPdf;
 
 
 
@@ -20,6 +22,8 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+
+builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 
 
 
