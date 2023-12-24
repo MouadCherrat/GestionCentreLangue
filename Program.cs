@@ -14,7 +14,12 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("MvcecolecontextC
 builder.Services.AddScoped<CoursServices>();
 builder.Services.AddScoped<ProfServices>();
 builder.Services.AddScoped<StudentServices>();
-builder.Services.AddSession();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // You can adjust the session timeout as needed
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 
 
@@ -36,9 +41,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseSession();
+
 app.UseAuthorization();
 
-app.UseSession();
+
 
 app.MapControllerRoute(
     name: "default",

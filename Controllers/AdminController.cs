@@ -6,7 +6,7 @@ namespace Application_GS_ecole.Controllers
 {
     public class AdminController : Controller
     {
-        
+
         SqlConnection con = new SqlConnection();
         SqlCommand cmd = new SqlCommand();
         SqlDataReader rd;
@@ -37,7 +37,7 @@ namespace Application_GS_ecole.Controllers
 
                 if (rd.Read())
                 {
-                    HttpContext.Session.SetString("AdminLoggedIn", "true");
+                   
                     con.Close();
                     return RedirectToAction("Index", "Home");
                 }

@@ -31,6 +31,11 @@ namespace Application_GS_ecole.Services
         {
             return _context.Cours.Select(c => c.Designation).ToList();
         }
-
+        public void DeleteProf(Guid profId)
+        {
+            var prof = _context.Profs.Find(profId);
+            _context.Profs.Remove(prof);
+            _context.SaveChanges();
+        }
     }
 }

@@ -25,7 +25,7 @@
                     <td>@prof.Nom</td>
                     <td>@prof.Cours.Designation</td>
                     <td>
-                        <a href="#" class="btn btn-danger">Delete</a>
+                        <a asp-action="Delete" asp-route-id="@prof.Id_Prof" class="text-danger ml-1" onclick="return confirm('Are you sure to delete this Prof?')"><i class="fa fa-trash-alt fa-lg">Delete</i></a>
                     </td>
                 </tr>
             }

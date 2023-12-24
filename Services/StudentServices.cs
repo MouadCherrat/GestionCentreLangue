@@ -31,5 +31,11 @@ namespace Application_GS_ecole.Services
         {
             return _context.Cours.Select(c => c.Designation).ToList();
         }
+        public void DeleteStudent(Guid studentId)
+        {
+            var student = _context.Etudiants.Find(studentId);
+            _context.Etudiants.Remove(student);
+            _context.SaveChanges();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Application_GS_ecole.Models;
 using Application_GS_ecole.Services;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Application_GS_ecole.Controllers
@@ -33,6 +34,11 @@ namespace Application_GS_ecole.Controllers
             Guid courseId = profservices.GetCourseIdByName(courseName);
             prof.Id_Cours = courseId;
             profservices.AddProfs(prof);
+            return RedirectToAction("AllProfs");
+        }
+        public IActionResult Delete(Guid id)
+        {
+            profservices.DeleteProf(id);
             return RedirectToAction("AllProfs");
         }
     }
